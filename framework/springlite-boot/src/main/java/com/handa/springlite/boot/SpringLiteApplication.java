@@ -4,6 +4,8 @@ import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.nio.file.Paths;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Server;
@@ -88,6 +90,59 @@ public class SpringLiteApplication {
 
     protected void printBanner() {
         String banner = ClassPathUtils.readString("/banner.txt");
+        // 解析颜色标记
+        banner = AnsiColor.resolve(banner);
         banner.lines().forEach(System.out::println);
+    }
+
+    /**
+     * ANSI 颜色工具类
+     */
+    static class AnsiColor {
+        public static final String RESET = "\033[0m";
+        public static final String BLACK = "\033[30m";
+        public static final String RED = "\033[31m";
+        public static final String GREEN = "\033[32m";
+        public static final String YELLOW = "\033[33m";
+        public static final String BLUE = "\033[34m";
+        public static final String MAGENTA = "\033[35m";
+        public static final String CYAN = "\033[36m";
+        public static final String WHITE = "\033[37m";
+        public static final String BRIGHT_BLACK = "\033[90m";
+        public static final String BRIGHT_RED = "\033[91m";
+        public static final String BRIGHT_GREEN = "\033[92m";
+        public static final String BRIGHT_YELLOW = "\033[93m";
+        public static final String BRIGHT_BLUE = "\033[94m";
+        public static final String BRIGHT_MAGENTA = "\033[95m";
+        public static final String BRIGHT_CYAN = "\033[96m";
+        public static final String BRIGHT_WHITE = "\033[97m";
+
+        private static final java.util.regex.Pattern COLOR_PATTERN = java.util.regex.Pattern.compile("\\$\\{AnsiColor\\.([A-Z_]+)\\}");
+
+        /**
+         * 解析字符串中的颜色标记
+         */
+        public static String resolve(String text) {
+            Matcher matcher = COLOR_PATTERN.matcher(text);
+            StringBuffer sb = new StringBuffer();
+            while (matcher.find()) {
+                String colorName = matcher.group(1);
+                String colorCode = getColorCode(colorName);
+                matcher.appendReplacement(sb, colorCode);
+            }
+            matcher.appendTail(sb);
+            return sb.toString();
+        }
+
+        /**
+         * 根据颜色名称获取颜色代码
+         */
+        private static String getColorCode(String colorName) {
+            try {
+                return (String) AnsiColor.class.getField(colorName).get(null);
+            } catch (Exception e) {
+                return "";
+            }
+        }
     }
 }
