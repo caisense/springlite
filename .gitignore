@@ -1,0 +1,30 @@
+# --- 忽略 IDEA 配置文件 ---
+# .idea/ 目录包含大量个人化设置，如窗口布局、本地历史等
+.idea/
+# *.iml 是模块文件，通常由项目结构自动生成
+*.iml
+# 其他可能的 IDEA 相关文件
+*.iws
+*.ipr
+
+# --- 忽略编译输出目录 ---
+# Maven 项目的编译输出目录
+target/
+# Gradle 项目的编译输出目录
+build/
+# 通用的 IDEA 编译输出目录
+out/
+# Gradle 的缓存目录
+.gradle/
+
+# --- 忽略系统文件 ---
+# macOS 系统生成的文件
+.DS_Store
+# Windows 系统生成的缩略图文件
+Thumbs.db
+
+# --- 忽略日志和临时文件 ---
+*.log
+*.tmp
+*.swp
+*.swo
