@@ -1,4 +1,4 @@
-package com.handa.springlite;
+package com.handa.hello;
 
 import java.io.File;
 import java.io.IOException;

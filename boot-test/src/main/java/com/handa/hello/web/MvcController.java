@@ -1,12 +1,12 @@
-package com.handa.springlite.web;
+package com.handa.hello.web;
 
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.handa.springlite.User;
-import com.handa.springlite.service.UserService;
+import com.handa.hello.User;
+import com.handa.hello.service.UserService;
 import com.handa.springlite.annotation.Autowired;
 import com.handa.springlite.annotation.Controller;
 import com.handa.springlite.annotation.GetMapping;
