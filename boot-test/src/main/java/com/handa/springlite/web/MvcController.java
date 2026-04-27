@@ -1,19 +1,18 @@
-package com.handa.hello.web;
+package com.handa.springlite.web;
 
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.handa.hello.User;
-import com.handa.hello.service.UserService;
+import com.handa.springlite.User;
+import com.handa.springlite.service.UserService;
 import com.handa.springlite.annotation.Autowired;
 import com.handa.springlite.annotation.Controller;
 import com.handa.springlite.annotation.GetMapping;
 import com.handa.springlite.annotation.PostMapping;
 import com.handa.springlite.annotation.RequestParam;
 import com.handa.springlite.exception.DataAccessException;
-import com.handa.springlite.web.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
 

@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystemAlreadyExistsException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -78,7 +80,17 @@ public class ResourceResolver {
     }
 
     Path jarUriToPath(String basePackagePath, URI jarUri) throws IOException {
-        return FileSystems.newFileSystem(jarUri, Map.of()).getPath(basePackagePath);
+        // 当boot-test包名为com.handa.springlite时，原代码打包执行报错java.nio.file.FileSystemAlreadyExistsException
+        // 报错分析：当同一个 JAR URI 被多次访问时，会尝试创建多个相同的文件系统，导致异常
+        // 当包名为 com.handa.springlite 时，扫描的类数量或来源可能有多个（与其他模块重名），导致重复访问同一 JAR
+        FileSystem fileSystem;
+        try {
+            fileSystem = FileSystems.newFileSystem(jarUri, Map.of());
+        } catch (FileSystemAlreadyExistsException e) {
+            // FileSystem already exists, reuse it
+            fileSystem = FileSystems.getFileSystem(jarUri);
+        }
+        return fileSystem.getPath(basePackagePath);
     }
 
     <R> void scanFile(boolean isJar, String base, Path root, List<R> collector, Function<Resource, R> mapper) throws IOException {

@@ -69,7 +69,7 @@
 							<!-- Classpath前缀 -->
 							<classpathPrefix>tmp-webapp/WEB-INF/lib/</classpathPrefix>
 							<!-- main启动类 -->
-							<mainClass>com.handa.hello.Main</mainClass>
+							<mainClass>com.handa.springlite.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

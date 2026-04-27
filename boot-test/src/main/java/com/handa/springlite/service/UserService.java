@@ -1,8 +1,8 @@
-package com.handa.hello.service;
+package com.handa.springlite.service;
 
 import java.util.List;
 
-import com.handa.hello.User;
+import com.handa.springlite.User;
 import com.handa.springlite.annotation.Autowired;
 import com.handa.springlite.annotation.Component;
 import com.handa.springlite.annotation.Transactional;

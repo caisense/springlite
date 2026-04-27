@@ -1,4 +1,4 @@
-package com.handa.hello;
+package com.handa.springlite;
 
 import com.handa.springlite.annotation.ComponentScan;
 import com.handa.springlite.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.handa.hello.service;
+package com.handa.springlite.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

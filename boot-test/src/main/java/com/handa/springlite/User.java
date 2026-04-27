@@ -1,4 +1,4 @@
-package com.handa.hello;
+package com.handa.springlite;
 
 public class User {
 

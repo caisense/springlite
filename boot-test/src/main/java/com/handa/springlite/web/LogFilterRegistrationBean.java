@@ -1,4 +1,4 @@
-package com.handa.hello.web;
+package com.handa.springlite.web;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.handa.springlite.annotation.Component;
 import com.handa.springlite.annotation.Order;
-import com.handa.springlite.web.FilterRegistrationBean;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
